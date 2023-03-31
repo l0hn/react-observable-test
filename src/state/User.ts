@@ -7,6 +7,9 @@ import {action, computed, makeAutoObservable, observable} from "mobx";
  * impossible to type without getting a headache, code is readable, use normal methods / properties / setters etc..
  */
 export class User {
+
+    //lots of redundant property getters / setters but I want to test they work properly with observable / action etc..
+
     @observable private _firstName: string;
     @observable private _surname: string;
     @observable private _dob: number;

@@ -6,6 +6,8 @@ import {action, makeAutoObservable, observable} from "mobx";
  * other state info, or not. But this shows that nested objects are observable.
  */
 export class UserState {
+
+    //`_user` split up into getter/setter to test real-world-like usage, observer works as expected when using this.
     @observable private _user:User;
 
     @action
