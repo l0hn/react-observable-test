@@ -1,7 +1,8 @@
 import React from "react";
 import {observer} from "mobx-react";
 import {AppState} from "../state/AppState";
-import {User} from "../data/User";
+import {User} from "../state/User";
+import {runInAction} from "mobx";
 
 
 /**
@@ -10,6 +11,16 @@ import {User} from "../data/User";
 @observer
 export class UserSwitcher extends React.Component<any, any> {
 
+
+    /**
+     * Example of 'batching' changes inside an action to prevent unnecessary change notifications.
+     */
+    actionDemo() {
+        runInAction(() => {
+            AppState.userState.user.firstName = "changed firstName";
+            AppState.userState.user.surname = "changed surName";
+        });
+    }
 
     makeSomeUser():User {
         switch (AppState.userState.user.firstName) {
@@ -30,11 +41,12 @@ export class UserSwitcher extends React.Component<any, any> {
 
     switchUser() {
         //try setting user to a new object:
-        AppState.userState.setUser(this.makeSomeUser());
+        AppState.userState.user = this.makeSomeUser();
         console.log("Switched User");
     }
 
     render() {
+        console.log("UserSwitcher.render()");
         return (
             <div>
                 <button onClick={() => this.switchUser()}>Change {AppState.userState.user.fullName}</button>

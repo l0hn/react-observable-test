@@ -1,5 +1,6 @@
-import {User} from "../data/User";
+import {User} from "./User";
 import {UserState} from "./UserState";
+import {LoginManager} from "./LoginManager";
 
 
 /**
@@ -7,6 +8,11 @@ import {UserState} from "./UserState";
  */
 class AppStateSingleton {
     public userState: UserState;
+    public readonly loginManager:LoginManager;
+
+    constructor() {
+        this.loginManager = new LoginManager();
+    }
 }
 
 //initializing with some default state for example purposes

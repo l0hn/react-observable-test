@@ -8,8 +8,6 @@ import {runInAction} from "mobx";
  */
 @observer
 export class UserNameChanger extends React.Component<any, any> {
-
-
     firstNameInputChanged = (e:React.FormEvent<HTMLInputElement>) => {
         runInAction(() => {
             AppState.userState.user.firstName = e.currentTarget.value;
@@ -23,6 +21,7 @@ export class UserNameChanger extends React.Component<any, any> {
     };
 
     render() {
+        console.log("UserNameChanger.render()");
         return (
             <div>
                 <li>
